@@ -1,9 +1,9 @@
-name = ["Dani","William","Kaiser","Ducc"]
+name = ["Dani","William","Mohammed","Dirk"]
 print(f"this is the name of a person {name[1].title()}")
 name[1] = "merian webster".title()
 print("changing wiliams name now...")
 print(name)
-name.append(" Koran waifu ")
+name.append(" Teriaki ")
 print(name[4].lstrip().rstrip().title())
 name.insert(3,"Sasha Grey")
 print(name[3])
