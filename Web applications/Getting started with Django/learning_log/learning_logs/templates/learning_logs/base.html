@@ -1,12 +1,42 @@
-<p>
-    <a href="{% url 'learning_logs:index' %}">Learning Log</a>
-    <a href="{% url 'learning_logs:topics' %}">Topics</a>
-    {% if user.is_authenticated %}
-    Hello, {{ user.username }}.
-    <a href="{% url 'users:logout' %}">log out</a>
-    {% else %}
-    <a href="{% url 'users:register' %}">register</a>
-    <a href="{% url 'users:login' %}">log in</a>
-    {% endif %}
-</p>
-{% block content %}{% endblock content %}
+{% load boostrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Learning Log{% endblock title %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <a class="navbar-brand" href="{% url 'learning_logs:index' %}">Learning Log</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul clas="navbar-nav mr-auto">
+            <li class="nav-link" href="{% url 'learning_logs:topic' %}">Topics</li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-link">Hello, {{ user.username }}.</li>
+                <li class="nav-link"><a href="{% url 'users:logout' %}">log out</a></li>
+            {% else %}
+                <li class="nav-link"><a href="{% url 'users:register' %}">register</a></li>
+                <li class="nav-link"><a href="{% url 'users:login' %}">log in</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+</main>
+</body>
+</html>
